@@ -3,7 +3,7 @@ package net.bensullivan.connect4.cli;
 import net.bensullivan.connect4.cli.exception.InvalidFrameDimensionsException;
 import net.bensullivan.connect4.model.FrameDimension;
 
-public class Connect4CLIDimensionParser {
+public class Connect4CLIFrameDimensionParser {
 
     public static final String SPACE = " ";
 

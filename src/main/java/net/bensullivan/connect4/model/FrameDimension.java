@@ -14,8 +14,7 @@ public class FrameDimension {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FrameDimension that = (FrameDimension) o;
-        if (width != that.width) return false;
-        return height == that.height;
+        return width == that.width && height == that.height;
     }
 
     @Override
@@ -28,5 +27,13 @@ public class FrameDimension {
     @Override
     public String toString() {
         return "FrameDimension{width=" + width + ", height=" + height + '}';
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }
