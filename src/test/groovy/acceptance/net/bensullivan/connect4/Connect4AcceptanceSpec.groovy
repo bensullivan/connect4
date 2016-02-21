@@ -40,10 +40,37 @@ class Connect4AcceptanceSpec extends Specification {
         Result.RED_WINS == connect4.redsTurn("1");
     }
 
-    @Ignore
     def "Scenario 3: Yellow should win with 4 diagonal checkers"() {
         expect:
-        println("Not yet implemented")
+        expectedInitialisedGrid(8, 7) == connect4.boardDimensions("8 7").getFrame().grid
+
+        Result.PENDING == connect4.yellowsTurn("1");
+        Result.PENDING == connect4.redsTurn("2");
+        Result.PENDING == connect4.yellowsTurn("2");
+        Result.PENDING == connect4.redsTurn("3");
+        Result.PENDING == connect4.yellowsTurn("3");
+        Result.PENDING == connect4.redsTurn("4");
+        Result.PENDING == connect4.yellowsTurn("3");
+        Result.PENDING == connect4.redsTurn("4");
+        Result.PENDING == connect4.yellowsTurn("4");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.YELLOW_WINS == connect4.yellowsTurn("4");
+    }
+
+    def "Scenario 3a: Red should win with 4 upward diagonal checkers in lower half of grid"() {
+        expect:
+        expectedInitialisedGrid(8, 7) == connect4.boardDimensions("8 7").getFrame().grid
+
+        Result.PENDING == connect4.yellowsTurn("7");
+        Result.PENDING == connect4.redsTurn("4");
+        Result.PENDING == connect4.yellowsTurn("5");
+        Result.PENDING == connect4.redsTurn("5");
+        Result.PENDING == connect4.yellowsTurn("6");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.PENDING == connect4.yellowsTurn("7");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.PENDING == connect4.yellowsTurn("7");
+        Result.RED_WINS == connect4.redsTurn("7");
     }
 
     @Ignore
