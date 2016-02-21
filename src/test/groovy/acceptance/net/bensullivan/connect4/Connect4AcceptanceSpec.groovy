@@ -1,7 +1,9 @@
 package net.bensullivan.connect4
 
-import net.bensullivan.connect4.cli.Connect4CLIFrameDimensionParser
+import net.bensullivan.connect4.cli.CLIFrameDimensionParser
+import net.bensullivan.connect4.cli.CLITurnColumnParser
 import net.bensullivan.connect4.cli.exception.InvalidFrameDimensionsException
+import net.bensullivan.connect4.model.Position
 import spock.lang.Ignore
 import spock.lang.Specification
 
@@ -10,7 +12,7 @@ class Connect4AcceptanceSpec extends Specification {
     static final INVALID_DIMENSIONS_MSG =
             "Supplied frame dimensions are invalid. Width and height should be integers and separated by a single space."
 
-    def connect4 = new Connect4(new Connect4CLIFrameDimensionParser());
+    def connect4 = new Connect4(new CLIFrameDimensionParser(), new CLITurnColumnParser())
 
     @Ignore
     def "Scenario 1: Yellow should win with 4 horizontal checkers"() {
@@ -18,10 +20,18 @@ class Connect4AcceptanceSpec extends Specification {
         println("Not yet implemented")
     }
 
-    @Ignore
     def "Scenario 2: Red should win with 4 vertical checkers"() {
         expect:
-        println("Not yet implemented")
+        expectedInitialisedGrid(5, 4) == connect4.boardDimensions("5 4").grid
+
+        connect4.yellowsTurn("1");
+        connect4.redsTurn("2");
+        connect4.yellowsTurn("3");
+        connect4.redsTurn("2");
+        connect4.yellowsTurn("1");
+        connect4.redsTurn("2");
+        connect4.yellowsTurn("1");
+        connect4.redsTurn("2");
     }
 
     @Ignore
@@ -38,7 +48,7 @@ class Connect4AcceptanceSpec extends Specification {
 
     def "Scenario 5: Invalid board dimensions supplied"() {
         when:
-        connect4.enter("0 0")
+        connect4.boardDimensions("0 0")
 
         then:
         InvalidFrameDimensionsException ifde = thrown()
@@ -49,5 +59,13 @@ class Connect4AcceptanceSpec extends Specification {
     def "Scenario 6: Invalid move"() {
         expect:
         println("Not yet implemented")
+    }
+
+    def Position[][] expectedInitialisedGrid(numRows, numColumns) {
+        def grid = new Position[numRows][numColumns];
+        grid.each { Position[] row ->
+            Arrays.fill(row, Position.EMPTY);
+        }
+        return grid
     }
 }

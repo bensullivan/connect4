@@ -3,7 +3,7 @@ package net.bensullivan.connect4.cli;
 import net.bensullivan.connect4.cli.exception.InvalidFrameDimensionsException;
 import net.bensullivan.connect4.model.FrameDimension;
 
-public class Connect4CLIFrameDimensionParser {
+public class CLIFrameDimensionParser {
 
     public static final String SPACE = " ";
 
@@ -13,14 +13,14 @@ public class Connect4CLIFrameDimensionParser {
 
     private FrameDimension parse(String dimensionString) {
         int[] dimensions = tokenize(dimensionString);
-        int width = dimensions[0];
-        int height = dimensions[1];
-        if (width < 4 || height < 4) {
+        int numRows = dimensions[0];
+        int numColumns = dimensions[1];
+        if (numRows < 4 || numColumns < 4) {
             throw new InvalidFrameDimensionsException(
                     "Supplied frame dimensions ["
-                            + width + " " + height + "] are invalid. The frame must be at least [4 4]");
+                            + numRows + " " + numColumns + "] are invalid. The frame must be at least [4 4]");
         }
-        return new FrameDimension(width, height);
+        return new FrameDimension(numRows, numColumns);
     }
 
     private int[] tokenize(String dimensionString) {

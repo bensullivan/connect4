@@ -9,7 +9,7 @@ class Connect4CLIDimensionParserSpec extends Specification {
     static final INVALID_DIMENSIONS_MSG =
             "Supplied frame dimensions are invalid. Width and height should be integers and separated by a single space."
 
-    def connect4CmdLineParser = new Connect4CLIFrameDimensionParser()
+    def connect4CmdLineParser = new CLIFrameDimensionParser()
 
     def "should accept valid board dimensions"() {
         expect:
