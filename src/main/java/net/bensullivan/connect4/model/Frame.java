@@ -14,12 +14,21 @@ public class Frame {
         Arrays.stream(grid).forEach(row -> Arrays.fill(row, Position.EMPTY));
         System.out.println("FRAME INITIALIZED: ");
         prettyPrint();
+
     }
 
     public void dropCheckerIntoSlot(Checker checker, int userSpecifiedSlotIndex) {
         int rowIndex = findFirstNonEmptyRowPositionInGridSlot(userSpecifiedSlotIndex);
         grid[rowIndex][userSpecifiedSlotIndex - 1] = Position.fromChecker(checker);
         prettyPrint();
+    }
+
+    public Position[][] getGrid() {
+        return grid;
+    }
+
+    public FrameDimension getFrameDimension() {
+        return frameDimension;
     }
 
     private int findFirstNonEmptyRowPositionInGridSlot(int columnIndex) {
@@ -43,4 +52,3 @@ public class Frame {
         return rowString.toString();
     }
 }
-

@@ -4,6 +4,7 @@ import net.bensullivan.connect4.cli.CLIFrameDimensionParser
 import net.bensullivan.connect4.cli.CLITurnColumnParser
 import net.bensullivan.connect4.cli.exception.InvalidFrameDimensionsException
 import net.bensullivan.connect4.model.Position
+import net.bensullivan.connect4.model.Result
 import net.bensullivan.connect4.rules.ResultChecker
 import spock.lang.Ignore
 import spock.lang.Specification
@@ -12,24 +13,31 @@ class Connect4AcceptanceSpec extends Specification {
 
     def connect4 = new Connect4(new CLIFrameDimensionParser(), new CLITurnColumnParser(), new ResultChecker())
 
-    @Ignore
     def "Scenario 1: Yellow should win with 4 horizontal checkers"() {
         expect:
-        println("Not yet implemented")
+        expectedInitialisedGrid(8, 10) == connect4.boardDimensions("8 10").getFrame().grid
+
+        Result.PENDING == connect4.yellowsTurn("1");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.PENDING == connect4.yellowsTurn("2");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.PENDING == connect4.yellowsTurn("3");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.YELLOW_WINS == connect4.yellowsTurn("4");
     }
 
     def "Scenario 2: Red should win with 4 vertical checkers"() {
         expect:
         expectedInitialisedGrid(5, 4) == connect4.boardDimensions("5 4").getFrame().grid
 
-        connect4.yellowsTurn("1");
-        connect4.redsTurn("2");
-        connect4.yellowsTurn("3");
-        connect4.redsTurn("2");
-        connect4.yellowsTurn("1");
-        connect4.redsTurn("2");
-        connect4.yellowsTurn("1");
-        connect4.redsTurn("2");
+        Result.PENDING == connect4.yellowsTurn("2");
+        Result.PENDING == connect4.redsTurn("1");
+        Result.PENDING == connect4.yellowsTurn("3");
+        Result.PENDING == connect4.redsTurn("1");
+        Result.PENDING == connect4.yellowsTurn("2");
+        Result.PENDING == connect4.redsTurn("1");
+        Result.PENDING == connect4.yellowsTurn("2");
+        Result.RED_WINS == connect4.redsTurn("1");
     }
 
     @Ignore
