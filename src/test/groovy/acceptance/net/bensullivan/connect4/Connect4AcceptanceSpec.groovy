@@ -73,6 +73,47 @@ class Connect4AcceptanceSpec extends Specification {
         Result.RED_WINS == connect4.redsTurn("7");
     }
 
+    def "Scenario 3b: Yellow should win with 4 downward diagonal checkers"() {
+        expect:
+        expectedInitialisedGrid(8, 7) == connect4.boardDimensions("8 7").getFrame().grid
+
+        Result.PENDING == connect4.yellowsTurn("1");
+        Result.PENDING == connect4.redsTurn("1");
+        Result.PENDING == connect4.yellowsTurn("1");
+        Result.PENDING == connect4.redsTurn("2");
+        Result.PENDING == connect4.yellowsTurn("1");
+        Result.PENDING == connect4.redsTurn("2");
+        Result.PENDING == connect4.yellowsTurn("2");
+        Result.PENDING == connect4.redsTurn("3");
+        Result.PENDING == connect4.yellowsTurn("4");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.YELLOW_WINS == connect4.yellowsTurn("3");
+    }
+
+    def "Scenario 3c: Red should win with 4 downward diagonal checkers in the upper half of the grid"() {
+        expect:
+        expectedInitialisedGrid(5, 7) == connect4.boardDimensions("5 7").getFrame().grid
+
+        Result.PENDING == connect4.yellowsTurn("5");
+        Result.PENDING == connect4.redsTurn("5");
+        Result.PENDING == connect4.yellowsTurn("5");
+        Result.PENDING == connect4.redsTurn("5");
+        Result.PENDING == connect4.yellowsTurn("4");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.PENDING == connect4.yellowsTurn("4");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.PENDING == connect4.yellowsTurn("4");
+        Result.PENDING == connect4.redsTurn("3");
+        Result.PENDING == connect4.yellowsTurn("3");
+        Result.PENDING == connect4.redsTurn("6");
+        Result.PENDING == connect4.yellowsTurn("7");
+        Result.PENDING == connect4.redsTurn("7");
+        Result.PENDING == connect4.yellowsTurn("1");
+        Result.PENDING == connect4.redsTurn("4");
+        Result.PENDING == connect4.yellowsTurn("1");
+        Result.RED_WINS == connect4.redsTurn("4");
+    }
+
     @Ignore
     def "Scenario 4: Game is drawn with neither Yellow nor Red having 4 checkers in a row"() {
         expect:
