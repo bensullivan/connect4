@@ -15,7 +15,7 @@ class Connect4AcceptanceSpec extends Specification {
 
     def "Scenario 1: Yellow should win with 4 horizontal checkers"() {
         expect:
-        expectedInitialisedGrid(8, 10) == connect4.boardDimensions("8 10").getFrame().grid
+        expectedInitialisedGrid(8, 10) == connect4.frameDimensions("8 10").getFrame().grid
 
         Result.PENDING == connect4.yellowsTurn("1");
         Result.PENDING == connect4.redsTurn("6");
@@ -28,7 +28,7 @@ class Connect4AcceptanceSpec extends Specification {
 
     def "Scenario 2: Red should win with 4 vertical checkers"() {
         expect:
-        expectedInitialisedGrid(5, 4) == connect4.boardDimensions("5 4").getFrame().grid
+        expectedInitialisedGrid(5, 4) == connect4.frameDimensions("5 4").getFrame().grid
 
         Result.PENDING == connect4.yellowsTurn("2");
         Result.PENDING == connect4.redsTurn("1");
@@ -42,7 +42,7 @@ class Connect4AcceptanceSpec extends Specification {
 
     def "Scenario 3: Yellow should win with 4 diagonal checkers"() {
         expect:
-        expectedInitialisedGrid(8, 7) == connect4.boardDimensions("8 7").getFrame().grid
+        expectedInitialisedGrid(8, 7) == connect4.frameDimensions("8 7").getFrame().grid
 
         Result.PENDING == connect4.yellowsTurn("1");
         Result.PENDING == connect4.redsTurn("2");
@@ -59,7 +59,7 @@ class Connect4AcceptanceSpec extends Specification {
 
     def "Scenario 3a: Red should win with 4 upward diagonal checkers in lower half of grid"() {
         expect:
-        expectedInitialisedGrid(8, 7) == connect4.boardDimensions("8 7").getFrame().grid
+        expectedInitialisedGrid(8, 7) == connect4.frameDimensions("8 7").getFrame().grid
 
         Result.PENDING == connect4.yellowsTurn("7");
         Result.PENDING == connect4.redsTurn("4");
@@ -75,7 +75,7 @@ class Connect4AcceptanceSpec extends Specification {
 
     def "Scenario 3b: Yellow should win with 4 downward diagonal checkers"() {
         expect:
-        expectedInitialisedGrid(8, 7) == connect4.boardDimensions("8 7").getFrame().grid
+        expectedInitialisedGrid(8, 7) == connect4.frameDimensions("8 7").getFrame().grid
 
         Result.PENDING == connect4.yellowsTurn("1");
         Result.PENDING == connect4.redsTurn("1");
@@ -92,7 +92,7 @@ class Connect4AcceptanceSpec extends Specification {
 
     def "Scenario 3c: Red should win with 4 downward diagonal checkers in the upper half of the grid"() {
         expect:
-        expectedInitialisedGrid(5, 7) == connect4.boardDimensions("5 7").getFrame().grid
+        expectedInitialisedGrid(5, 7) == connect4.frameDimensions("5 7").getFrame().grid
 
         Result.PENDING == connect4.yellowsTurn("5");
         Result.PENDING == connect4.redsTurn("5");
@@ -122,7 +122,7 @@ class Connect4AcceptanceSpec extends Specification {
 
     def "Scenario 5: Invalid board dimensions supplied"() {
         when:
-        connect4.boardDimensions("0 0")
+        connect4.frameDimensions("0 0")
 
         then:
         InvalidFrameDimensionsException ifde = thrown()

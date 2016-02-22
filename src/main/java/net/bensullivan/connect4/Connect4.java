@@ -10,10 +10,12 @@ import net.bensullivan.connect4.rules.ResultChecker;
 
 public class Connect4 {
 
-    private Frame frame;
     private final CLIFrameDimensionParser cliFrameDimensionParser;
     private final CLITurnColumnParser cliTurnColumnParser;
     private final ResultChecker resultChecker;
+
+    private Frame frame;
+    private Result result = Result.PENDING;
 
     public Connect4(CLIFrameDimensionParser cliFrameDimensionParser, CLITurnColumnParser cliTurnColumnParser
                     , ResultChecker resultChecker) {
@@ -22,7 +24,7 @@ public class Connect4 {
         this.resultChecker = resultChecker;
     }
 
-    public Connect4 boardDimensions(String userInput) {
+    public Connect4 frameDimensions(String userInput) {
         FrameDimension frameDimension = cliFrameDimensionParser.parseFrameDimension(userInput);
         frame = new Frame(frameDimension);
         return this;
@@ -32,17 +34,23 @@ public class Connect4 {
         int columnIndex = cliTurnColumnParser.parse(userInput);
         System.out.println("YELLOW chooses slot " + columnIndex + ":");
         frame.dropCheckerIntoSlot(Checker.YELLOW, columnIndex);
-        return resultChecker.check(frame);
+        result = resultChecker.check(frame);
+        return result;
     }
 
     public Result redsTurn(String userInput) {
         int columnIndex = cliTurnColumnParser.parse(userInput);
         System.out.println("RED chooses slot " + columnIndex + ":");
         frame.dropCheckerIntoSlot(Checker.RED, columnIndex);
-        return resultChecker.check(frame);
+        result = resultChecker.check(frame);
+        return result;
     }
 
     public Frame getFrame() {
         return frame;
+    }
+
+    public Result getResult() {
+        return result;
     }
 }
