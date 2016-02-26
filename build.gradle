@@ -4,16 +4,19 @@ version '0.1-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: 'cobertura'
 
 sourceCompatibility = 1.8
 
-//sourceSets {
-//    test {
-//        groovy {
-//            srcDirs = ['test/groovy/acceptance', 'test/groovy/unit']
-//        }
-//    }
-//}
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.saliman:gradle-cobertura-plugin:2.2.4'
+    }
+}
 
 jar {
     manifest {
@@ -35,6 +38,14 @@ dependencies {
     testRuntime "cglib:cglib-nodep:3.1"          // allows mocking of classes (in addition to interfaces)
     testRuntime "org.objenesis:objenesis:2.1"    // allows mocking of classes without default constructor (together with CGLIB)
 }
+
+cobertura {
+    coverageFormats = ['html', 'xml']
+    coverageIgnoreTrivial = true
+    coverageReportDir = new File("$buildDir/reports/cobertura")
+}
+
+test.finalizedBy(project.tasks.cobertura)
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.11'

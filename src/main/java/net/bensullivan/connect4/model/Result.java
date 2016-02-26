@@ -4,5 +4,6 @@ public enum Result {
     PENDING,
     RED_WINS,
     YELLOW_WINS,
-    DRAW;
+    INVALID_MOVE,
+    DRAW
 }

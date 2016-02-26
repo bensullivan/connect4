@@ -25,7 +25,7 @@ public class CLIFrameDimensionParser {
 
     private int[] tokenize(String dimensionString) {
         try {
-            String[] dimStrings = dimensionString.split(SPACE);
+            String[] dimStrings = dimensionString.trim().split(SPACE);
             return new int[]{Integer.parseInt(dimStrings[0]), Integer.parseInt(dimStrings[1])};
         } catch (NumberFormatException|IndexOutOfBoundsException e) {
             throw new InvalidFrameDimensionsException("Supplied frame dimensions are invalid. "

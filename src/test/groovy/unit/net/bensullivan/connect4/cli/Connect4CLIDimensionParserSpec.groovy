@@ -15,6 +15,7 @@ class Connect4CLIDimensionParserSpec extends Specification {
         expect:
         new FrameDimension(5, 5) == connect4CmdLineParser.parseFrameDimension("5 5")
         new FrameDimension(5, 5) == connect4CmdLineParser.parseFrameDimension("5 5   ")
+        new FrameDimension(5, 5) == connect4CmdLineParser.parseFrameDimension(" 5 5 ")
         new FrameDimension(4, 7) == connect4CmdLineParser.parseFrameDimension("4 7")
         new FrameDimension(4, 4) == connect4CmdLineParser.parseFrameDimension("4 4")
         new FrameDimension(7, 5) == connect4CmdLineParser.parseFrameDimension("7 5")

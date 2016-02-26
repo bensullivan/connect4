@@ -1,5 +1,7 @@
 package net.bensullivan.connect4.model;
 
+import net.bensullivan.connect4.cli.exception.InvalidMoveException;
+
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
@@ -32,11 +34,15 @@ public class Frame {
     }
 
     private int findFirstNonEmptyRowPositionInGridSlot(int columnIndex) {
-        int i = frameDimension.getNumRows() - 1;
-        for (; i >= 0; i--) {
-            if(grid[i][columnIndex - 1] == Position.EMPTY) break;
+        int rowIndex = frameDimension.getNumRows() - 1;
+        for (; rowIndex >= 0; rowIndex--) {
+            if(grid[rowIndex][columnIndex - 1] == Position.EMPTY) {
+                break;
+            } else if (rowIndex == 0) {
+                throw new InvalidMoveException("Selected slot is full. Please choose again.");
+            }
         }
-        return i;
+        return rowIndex;
     }
 
     private String prettyPrint() {

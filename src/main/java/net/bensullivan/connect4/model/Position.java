@@ -10,8 +10,7 @@ public enum Position {
         switch(this) {
             case EMPTY: return "o";
             case RED: return "r";
-            case YELLOW: return "y";
-            default: throw new IllegalArgumentException();
+            default: return "y";
         }
     }
 

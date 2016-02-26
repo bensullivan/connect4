@@ -2,14 +2,14 @@ package net.bensullivan.connect4.rules;
 
 import net.bensullivan.connect4.model.*;
 
-public class ResultChecker {
+public class GridChecker {
 
     GridColumnChecker columnChecker = new GridColumnChecker();
     GridRowChecker rowChecker = new GridRowChecker();
     GridUpwardDiagonalChecker upwardDiagonalChecker = new GridUpwardDiagonalChecker();
     GridDownwardDiagonalChecker downwardDiagonalChecker = new GridDownwardDiagonalChecker();
 
-    public Result check(Frame frame) {
+    public Result checkResult(Frame frame) {
         if (columnChecker.checkColumns(frame) == Position.RED) return Result.RED_WINS;
         if (columnChecker.checkColumns(frame) == Position.YELLOW) return Result.YELLOW_WINS;
         if (rowChecker.checkRows(frame) == Position.RED) return Result.RED_WINS;
