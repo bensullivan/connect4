@@ -2,8 +2,8 @@
 
 To build, test and generate reports (test and coverage) run:
 
-<pre>./gradlew check jacoco
+<pre>./gradlew check jacoco</pre>
 
 To run the application:
 
-<pre>./gradlew -q run
+<pre>./gradlew -q run</pre>
