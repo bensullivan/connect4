@@ -5,7 +5,7 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'application'
 apply plugin: 'idea'
-apply plugin: 'cobertura'
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 mainClassName = "net.bensullivan.connect4.cli.Connect4CLI"
@@ -14,9 +14,6 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
-    }
-    dependencies {
-        classpath 'net.saliman:gradle-cobertura-plugin:2.2.4'
     }
 }
 
@@ -41,16 +38,16 @@ dependencies {
     testRuntime "org.objenesis:objenesis:2.1"    // allows mocking of classes without default constructor (together with CGLIB)
 }
 
-cobertura {
-    coverageFormats = ['html', 'xml']
-    coverageIgnoreTrivial = true
-    coverageReportDir = new File("$buildDir/reports/cobertura")
-}
-
-test.finalizedBy(project.tasks.cobertura)
-
 run{
     standardInput = System.in
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
 }
 
 task wrapper(type: Wrapper) {
