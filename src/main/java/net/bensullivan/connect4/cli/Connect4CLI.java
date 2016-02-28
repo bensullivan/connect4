@@ -7,6 +7,7 @@ import net.bensullivan.connect4.rules.GridChecker;
 
 import java.util.Scanner;
 
+//TODO This class needs an acceptance test to validate workflow
 public class Connect4CLI {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -44,12 +45,18 @@ public class Connect4CLI {
     }
 
     private static void playRound() {
+        if (connect4.getGridChecker().isGridFull(connect4.getFrame())) {
+            connect4.setResult(Result.DRAW);
+            return;
+        }
         attemptTurn(() -> {
             System.out.println("> Yellows turn: ");
             System.out.print("> ");
             return connect4.yellowsTurn(scanner.next());
         });
-        if (connect4.getResult() != Result.PENDING) return;
+        if (connect4.getResult() == Result.YELLOW_WINS) {
+            return;
+        }
         attemptTurn(() -> {
             System.out.println("> Reds turn: ");
             System.out.print("> ");

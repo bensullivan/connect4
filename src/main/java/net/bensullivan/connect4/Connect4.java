@@ -51,6 +51,10 @@ public class Connect4 {
 
     public Result getResult() { return result; }
 
+    public GridChecker getGridChecker() { return gridChecker; }
+
+    public void setResult(Result result) { this.result = result; }
+
     private Result tryDroppingCheckerIntoSlot(Checker checker, int columnIndex) {
         try {
             if (gridChecker.isGridFull(frame)) {

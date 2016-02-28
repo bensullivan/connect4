@@ -7,6 +7,7 @@ import net.bensullivan.connect4.model.Position;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO Refactor this component to adopt a more functional implementation
 public class GridDownwardDiagonalChecker {
 
     public Position checkDownwardDiagonals(Frame frame) {
