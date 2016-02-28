@@ -12,11 +12,11 @@ public class Frame {
 
     public Frame(FrameDimension frameDimension) {
         this.frameDimension = frameDimension;
+        //TODO Move anything but instance variable assignment out of the constructor
         grid = new Position[frameDimension.getNumRows()][frameDimension.getNumColumns()];
         Arrays.stream(grid).forEach(row -> Arrays.fill(row, Position.EMPTY));
         System.out.println("FRAME INITIALIZED: ");
         prettyPrint();
-
     }
 
     public void dropCheckerIntoSlot(Checker checker, int userSpecifiedSlotIndex) {
@@ -50,7 +50,6 @@ public class Frame {
         Arrays.stream(grid).forEach( row -> {
             IntStream.range(0, frameDimension.getNumColumns()).forEach( i -> {
                 rowString.append(row[i]).append(" ");
-//                rowString.append("R" + Arrays.asList(grid).indexOf(row) + "C" + i + row[i] + " ");
             });
             rowString.append("\n");
         });

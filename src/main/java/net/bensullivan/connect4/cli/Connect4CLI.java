@@ -2,6 +2,7 @@ package net.bensullivan.connect4.cli;
 
 import net.bensullivan.connect4.Connect4;
 import net.bensullivan.connect4.model.Result;
+import net.bensullivan.connect4.model.Turn;
 import net.bensullivan.connect4.rules.GridChecker;
 
 import java.util.Scanner;

@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    List<Position> positions = new ArrayList<>();
+    private final List<Position> positions = new ArrayList<>();
 
     public void add(Position position) {
         positions.add(position);
+    }
+
+    public boolean isNotFull() {
+        return positions.contains(Position.EMPTY);
     }
 
     public boolean hasSequenceOfFour(Position targetPosition) {

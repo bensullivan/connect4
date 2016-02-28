@@ -123,7 +123,7 @@ class Connect4AcceptanceSpec extends Specification {
                 Result.PENDING == connect4.redsTurn("${colIndex + 1}")
             }
         }
-        Result.INVALID_MOVE == connect4.yellowsTurn("1")
+        Result.DRAW == connect4.yellowsTurn("1")
     }
 
     def "Scenario 5: Invalid board dimensions supplied"() {

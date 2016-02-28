@@ -53,7 +53,9 @@ public class Connect4 {
 
     private Result tryDroppingCheckerIntoSlot(Checker checker, int columnIndex) {
         try {
-            if (columnIndex > frame.getFrameDimension().getNumColumns()) {
+            if (gridChecker.isGridFull(frame)) {
+                return Result.DRAW;
+            } else if (columnIndex > frame.getFrameDimension().getNumColumns()) {
                 throw new RuntimeException("The frame slot index is invalid: " + columnIndex);
             }
             frame.dropCheckerIntoSlot(checker, columnIndex);

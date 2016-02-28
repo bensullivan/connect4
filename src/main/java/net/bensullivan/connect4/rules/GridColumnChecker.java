@@ -10,8 +10,7 @@ import java.util.List;
 public class GridColumnChecker {
 
     public Position checkColumns(Frame frame) {
-        Position[][] grid = frame.getGrid();
-        List<Line> cols = getGridColumns(frame, grid);
+        List<Line> cols = getGridColumns(frame);
         for (Line line : cols) {
             if (line.hasSequenceOfFour(Position.YELLOW)) return Position.YELLOW;
             if (line.hasSequenceOfFour(Position.RED)) return Position.RED;
@@ -19,7 +18,8 @@ public class GridColumnChecker {
         return Position.EMPTY;
     }
 
-    private List<Line> getGridColumns(Frame frame, Position[][] grid) {
+    public List<Line> getGridColumns(Frame frame) {
+        Position[][] grid = frame.getGrid();
         List<Line> cols = new ArrayList<>();
         for (int j = 0; j < frame.getFrameDimension().getNumColumns(); j++) {
             Line column = new Line();
