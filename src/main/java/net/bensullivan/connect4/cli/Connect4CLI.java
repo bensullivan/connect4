@@ -49,6 +49,7 @@ public class Connect4CLI {
             System.out.print("> ");
             return connect4.yellowsTurn(scanner.next());
         });
+        if (connect4.getResult() != Result.PENDING) return;
         attemptTurn(() -> {
             System.out.println("> Reds turn: ");
             System.out.print("> ");

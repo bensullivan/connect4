@@ -6,7 +6,6 @@ import net.bensullivan.connect4.cli.exception.InvalidFrameDimensionsException
 import net.bensullivan.connect4.model.Position
 import net.bensullivan.connect4.model.Result
 import net.bensullivan.connect4.rules.GridChecker
-import spock.lang.Ignore
 import spock.lang.Specification
 
 class Connect4AcceptanceSpec extends Specification {
